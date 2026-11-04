@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)file:///C:/Users/PC/Documents/Default%20Project/aceable-book-a-call.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book a free 15-minute licensing call | Aceable Insurance</title>
+<meta name="description" content="Talk to a licensing advisor for 15 minutes and leave with your exact path to an insurance license: the right course, license line, and exam plan for your state. Free, no credit card.">
+
+<!-- ============================================================
+  BOOK-A-CALL FUNNEL — Aceable Insurance pre-license
+  Theme: "Teal × Blaze" — cream base, deep-teal panels, coral CTA.
+  Primary conversion: book a 15-min enrollment advisor call.
+  Integration points (search "TODO:wire"):
+   1. Booking availability  → real advisor calendars (Cal.com / Calendly)
+   2. Wizard submit         → CRM webhook (HubSpot/SF) + invite/SMS emails
+   3. data-cta attributes   → analytics events (GA4/Segment ready)
+   4. Video cards           → drop "video-1.jpg" and "video-2.jpg" next to
+     this file; wire click-throughs to real videos/lightbox later.
+============================================================ -->
+
+<style>
+  :root{
+    --ink:#0E2E2B;          /* headings — deep teal-black */
+    --body:#3D5451;         /* body text */
+    --muted:#5F6B63;
+    --paper:#FAF4EA;        /* warm cream page bg */
+    --card:#ffffff;
+    --line:#EADFCF;
+    --accent:#D7381A;       /* blaze — reserved: primary CTA + key states */
+    --accent-dark:#A62E12;
+    --accent-soft:#FDE8E1;
+    --gold:#F5B301;         /* stars + celebratory touches only */
+    --teal:#0B3B38;         /* panel teal */
+    --teal-card:#0F5F5B;
+    --radius:14px;
+    --shadow:0 10px 30px rgba(14,46,43,.10);
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{
+    font-family:var(--font);
+    color:var(--body);
+    background:var(--paper);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{color:var(--ink);line-height:1.18;letter-spacing:-.012em}
+  h1{font-size:clamp(1.9rem,4.5vw,2.9rem);font-weight:760}
+  h2{font-size:clamp(1.45rem,3vw,2rem);font-weight:720}
+  h3{font-size:1.1rem;font-weight:660}
+  p{max-width:62ch}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+  section{padding:72px 0}
+  .kicker{
+    font-size:.8rem;font-weight:760;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent-dark);margin-bottom:12px;
+  }
+  .lede{font-size:1.08rem;color:var(--muted);max-width:56ch}
+
+  /* ---------- buttons: one primary style, everything else quiet ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    min-height:48px;padding:12px 26px;border-radius:10px;border:0;cursor:pointer;
+    font:640 1.02rem var(--font);text-decoration:none;
+    transition:background .15s ease,transform .15s ease,box-shadow .15s ease;
+  }
+  .btn-primary{
+    background:var(--accent);color:#fff;
+    box-shadow:0 6px 18px rgba(215,56,26,.28);
+  }
+  .btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
+  .btn-ghost{background:transparent;color:var(--accent-dark);border:1.5px solid var(--line)}
+  .btn-ghost:hover{border-color:var(--accent)}
+  .quiet-link{color:var(--accent-dark);text-decoration:underline;text-underline-offset:3px}
+  .quiet-link:hover{color:var(--ink)}
+  .btn:focus-visible,a:focus-visible,input:focus-visible,button:focus-visible,summary:focus-visible{
+    outline:3px solid rgba(215,56,26,.5);outline-offset:2px;
+  }
+
+  /* ---------- disclaimer bar (practice-sample notice) ---------- */
+  .site-disclaimer{
+    background:var(--teal);color:rgba(250,244,234,.85);
+    font-size:.76rem;text-align:center;padding:7px 16px;letter-spacing:.02em;
+  }
+  .site-disclaimer strong{color:#fff}
+  .site-disclaimer a{color:#FAF4EA}
+  footer .disc-line{
+    width:100%;text-align:center;font-size:.76rem;margin-top:10px;
+    color:rgba(250,244,234,.62);
+  }
+
+  /* ---------- header ---------- */
+  header.site{
+    position:sticky;top:0;z-index:40;
+    background:rgba(250,244,234,.93);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .site-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .wordmark{display:flex;align-items:center;gap:10px;font-weight:760;font-size:1.15rem;color:var(--ink);text-decoration:none}
+  .badge-in{
+    font-size:.66rem;font-weight:760;letter-spacing:.06em;color:var(--accent-dark);
+    background:var(--accent-soft);border-radius:999px;padding:3px 9px;
+  }
+  header .btn{padding:9px 18px;min-height:42px;font-size:.92rem;box-shadow:none}
+
+  /* ---------- hero (deep teal panel) ---------- */
+  .hero{
+    position:relative;overflow:hidden;padding:72px 0 76px;
+    background:var(--teal);color:#FAF4EA;
+  }
+  .hero::before,.hero::after{
+    content:"";position:absolute;border-radius:50%;pointer-events:none;
+  }
+  .hero::before{ /* gold glow */
+    width:560px;height:560px;top:-220px;right:-140px;
+    background:radial-gradient(circle at center, rgba(245,179,1,.32), transparent 65%);
+  }
+  .hero::after{  /* blaze glow */
+    width:520px;height:520px;bottom:-260px;left:-160px;
+    background:radial-gradient(circle at center, rgba(215,56,26,.30), transparent 65%);
+  }
+  .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{color:#FAF4EA}
+  .hero .lede{color:rgba(250,244,234,.85);margin:18px 0 26px;font-size:1.13rem;max-width:54ch}
+  .hero .lede strong{color:#fff}
+  .trust-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px;font-size:.9rem;color:rgba(250,244,234,.85)}
+  .stars{color:var(--gold);letter-spacing:2px;font-size:.95rem}
+  .trust-row .who{color:#fff;font-weight:640}
+  .hero-visual{justify-self:center;width:100%;max-width:420px}
+  .plan-card{
+    background:var(--card);color:var(--body);border-radius:var(--radius);
+    box-shadow:0 24px 60px rgba(4,24,22,.45);padding:26px;
+    border-top:5px solid var(--accent);
+  }
+  .plan-card .tag{
+    display:inline-block;font-size:.72rem;font-weight:760;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--accent-dark);background:var(--accent-soft);
+    padding:4px 10px;border-radius:999px;margin-bottom:14px;
+  }
+  .plan-card h3{font-size:1.05rem;color:var(--ink);margin-bottom:4px}
+  .plan-card .sub{font-size:.85rem;color:var(--muted);margin-bottom:18px}
+  .agenda{list-style:none;display:grid;gap:12px}
+  .agenda li{display:flex;gap:12px;align-items:flex-start;font-size:.94rem}
+  .agenda .n{
+    flex:none;width:24px;height:24px;border-radius:50%;
+    background:var(--accent-soft);color:var(--accent-dark);
+    font-size:.78rem;font-weight:760;display:grid;place-items:center;margin-top:2px;
+  }
+  .agenda .when{display:block;font-size:.78rem;color:var(--muted)}
+  .advisor-chip{
+    margin-top:20px;padding-top:18px;border-top:1px solid var(--line);
+    display:flex;align-items:center;gap:12px;font-size:.87rem;
+  }
+  .avatar{
+    width:40px;height:40px;border-radius:50%;flex:none;
+    background:linear-gradient(135deg,var(--accent),var(--gold));color:#fff;
+    display:grid;place-items:center;font-weight:760;font-size:.8rem;
+  }
+  .advisor-chip b{display:block;color:var(--ink);font-size:.9rem}
+
+  /* ---------- proof strip ---------- */
+  .proof{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0}
+  .proof-inner{display:flex;gap:36px;flex-wrap:wrap;justify-content:center;align-items:center}
+  .proof-item{display:flex;align-items:center;gap:10px;font-size:.93rem;color:var(--body)}
+  .proof-item b{color:var(--ink)}
+  .proof-item .dot{width:5px;height:5px;border-radius:50%;background:var(--gold)}
+
+  /* ---------- benefits ---------- */
+  .benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  .benefit{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;display:flex;flex-direction:column;gap:10px;
+    box-shadow:var(--shadow);
+  }
+  .benefit .icon{
+    width:42px;height:42px;border-radius:11px;background:var(--accent-soft);
+    display:grid;place-items:center;font-size:1.2rem;
+  }
+  .benefit p{font-size:.96rem}
+  .proof-line{margin-top:auto;padding-top:12px;border-top:1px solid var(--line);font-size:.84rem;color:var(--muted)}
+  .proof-line b{color:var(--ink)}
+
+  /* ---------- video cards ---------- */
+  .video-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;max-width:860px}
+  .video-card{
+    border-radius:18px;overflow:hidden;background:var(--teal-card);
+    box-shadow:var(--shadow);transition:transform .18s ease,box-shadow .18s ease;
+  }
+  .video-card:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(14,46,43,.18)}
+  .video-card img{display:block;width:100%;height:auto}
+  .vid-fallback{display:none}
+  .video-card.noimg .vid-fallback{
+    display:block;aspect-ratio:593/621;padding:26px;
+    background:linear-gradient(160deg,var(--teal-card),#0B4B47 78%);
+    color:#FAF4EA;
+  }
+  .noimg .vid-kick{font-size:.78rem;font-weight:720;letter-spacing:.09em;text-transform:uppercase;color:var(--gold)}
+  .noimg .vid-title{font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:740;line-height:1.22;margin:10px 0 18px;color:#fff}
+  .noimg .vid-play{
+    width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.16);
+    display:grid;place-items:center;font-size:1.5rem;color:#fff;margin-top:26px;
+  }
+
+  /* ---------- how it works ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  .step{padding:28px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .step-num{
+    font-size:.78rem;font-weight:760;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-dark);margin-bottom:10px;
+  }
+  .step p{font-size:.96rem;margin-top:8px}
+  .step .time{font-size:.84rem;color:var(--muted);margin-top:14px;display:flex;align-items:center;gap:6px}
+
+  /* ---------- objections ---------- */
+  .objections{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .obj-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:36px}
+  .obj{padding:18px;font-size:.92rem}
+  .obj b{display:flex;gap:8px;align-items:center;color:var(--ink);margin-bottom:4px;font-size:.96rem}
+  .obj b::before{content:"✓";color:var(--accent);font-weight:800}
+  .fit-note{margin-top:28px;text-align:center;font-size:.95rem;color:var(--muted)}
+
+  /* ---------- testimonials ---------- */
+  .quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+  .quote{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
+  .quote .stars{margin-bottom:10px}
+  .quote h3{font-size:1rem;margin-bottom:8px}
+  .quote p{font-size:.93rem}
+  .quote footer{margin-top:14px;font-size:.85rem;color:var(--muted)}
+  .quote footer b{color:var(--ink)}
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:760px;margin:0 auto}
+  .faq details{border-bottom:1px solid var(--line);padding:18px 4px}
+  .faq summary{
+    cursor:pointer;font-weight:660;color:var(--ink);list-style:none;
+    display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:1.02rem;
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-weight:400;font-size:1.4rem;color:var(--accent-dark);line-height:1}
+  .faq details[open] summary::after{content:"–"}
+  .faq details p{margin-top:10px;font-size:.96rem}
+
+  /* ---------- final CTA ---------- */
+  .final{text-align:center;padding:88px 0}
+  .final .btn{margin-top:26px;font-size:1.08rem;padding:14px 34px}
+  .final .risk{margin-top:14px;font-size:.9rem;color:rgba(250,244,234,.72)}
+  .final-card{
+    position:relative;overflow:hidden;
+    background:var(--teal);color:#FAF4EA;border-radius:24px;
+    box-shadow:0 30px 70px rgba(14,46,43,.35);padding:56px 32px;max-width:860px;margin:0 auto;
+  }
+  .final-card::before{
+    content:"";position:absolute;width:380px;height:380px;top:-180px;right:-120px;border-radius:50%;
+    background:radial-gradient(circle at center, rgba(245,179,1,.30), transparent 65%);pointer-events:none;
+  }
+  .final-card h2{color:#fff}
+  .final-card .lede{color:rgba(250,244,234,.85);margin:14px auto 0}
+
+  /* ---------- footer ---------- */
+  footer.site{background:var(--teal);color:rgba(250,244,234,.75);padding:30px 0;font-size:.85rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+  footer a{color:rgba(250,244,234,.92)}
+
+  /* ---------- sticky mobile CTA ---------- */
+  .sticky-cta{
+    position:fixed;left:0;right:0;bottom:0;z-index:35;display:none;
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    background:rgba(255,255,255,.96);border-top:1px solid var(--line);
+    box-shadow:0 -6px 20px rgba(14,46,43,.10);
+  }
+  .sticky-cta .btn{width:100%}
+  .sticky-cta.visible{display:block}
+
+  /* ---------- booking wizard ---------- */
+  .overlay{
+    position:fixed;inset:0;z-index:60;display:none;
+    background:rgba(11,59,56,.55);backdrop-filter:blur(3px);
+    overflow-y:auto;padding:24px 16px;
+  }
+  .overlay.open{display:flex;align-items:flex-start;justify-content:center}
+  .wizard{
+    background:var(--card);border-radius:18px;max-width:660px;width:100%;
+    margin:auto;box-shadow:0 24px 64px rgba(4,24,22,.4);
+  }
+  .wiz-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 26px;border-bottom:1px solid var(--line)}
+  .wiz-head h2{font-size:1.12rem}
+  .close{background:none;border:0;cursor:pointer;font-size:1.5rem;color:var(--muted);line-height:1;padding:8px;border-radius:8px}
+  .close:hover{color:var(--ink);background:var(--paper)}
+  .progress{display:flex;gap:6px;padding:16px 26px 0}
+  .progress span{height:4px;flex:1;background:var(--line);border-radius:99px;transition:background .2s}
+  .progress span.done{background:var(--accent)}
+  .wiz-step{padding:22px 26px 30px;display:none}
+  .wiz-step.active{display:block}
+  .wiz-step h3{font-size:1.18rem;margin-bottom:6px}
+  .wiz-step .hint{font-size:.9rem;color:var(--muted);margin-bottom:20px}
+  .wiz-error{color:#9E2B10;font-size:.85rem;margin-top:10px;display:none}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-weight:640;font-size:.92rem;margin-bottom:6px;color:var(--ink)}
+  .field label .opt{font-weight:400;color:var(--muted);font-size:.85rem}
+  .field input{
+    width:100%;min-height:46px;padding:10px 14px;font:inherit;color:var(--ink);
+    border:1.5px solid var(--line);border-radius:9px;background:#fff;
+  }
+  .field input:hover{border-color:#D8CBB6}
+  .choice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:22px}
+  .chip{
+    padding:12px 8px;border:1.5px solid var(--line);border-radius:10px;background:#fff;
+    font:640 .92rem var(--font);color:var(--body);cursor:pointer;min-height:44px;
+    display:flex;align-items:center;justify-content:center;gap:6px;
+    transition:border-color .12s,background .12s;
+  }
+  .chip:hover{border-color:#CBBFA9}
+  .chip.active{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-dark)}
+  .choice-grid.lic{grid-template-columns:repeat(3,1fr)}
+  .radio-row{display:grid;gap:10px;margin-bottom:22px}
+  .radio-row .chip{justify-content:flex-start;padding:13px 16px}
+  .wiz-nav{display:flex;gap:12px;margin-top:26px;align-items:center}
+  .wiz-nav .btn{flex:1}
+  .wiz-back{flex:0!important;background:none!important;border:0;color:var(--accent-dark);font:640 .95rem var(--font);cursor:pointer;padding:12px;text-decoration:underline;text-underline-offset:3px;box-shadow:none!important}
+  .wiz-back:hover{color:var(--ink)}
+  .day-strip{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:20px;scrollbar-width:thin}
+  .day{
+    flex:none;width:70px;padding:10px 6px;border:1.5px solid var(--line);border-radius:10px;background:#fff;
+    display:flex;flex-direction:column;align-items:center;gap:2px;font:var(--font);cursor:pointer;
+  }
+  .day:hover{border-color:#CBBFA9}
+  .day.active{border-color:var(--accent);background:var(--accent-soft)}
+  .day .dow{font-size:.72rem;font-weight:720;letter-spacing:.06em;color:var(--muted);text-transform:uppercase}
+  .day .dn{font-weight:720;font-size:1rem;color:var(--ink)}
+  .day .dm{font-size:.72rem;color:var(--muted)}
+  .tz-note{font-size:.8rem;color:var(--muted);margin-bottom:14px}
+  .slot-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));gap:9px}
+  .slot{
+    padding:11px 6px;min-height:44px;border:1.5px solid var(--line);border-radius:9px;background:#fff;
+    font:640 .88rem var(--font);color:var(--body);cursor:pointer;
+  }
+  .slot:hover:not([disabled]){border-color:#CBBFA9}
+  .slot.active{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-dark)}
+  .slot[disabled]{opacity:.38;cursor:not-allowed;text-decoration:line-through}
+  .summary-box{background:var(--accent-soft);border:1px solid #F3C6B8;border-radius:12px;padding:18px;font-size:.94rem}
+  .summary-box + .summary-box{margin-top:12px}
+  .summary-box dt{font-weight:740;color:var(--accent-dark);font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;margin-bottom:2px}
+  .summary-box dd{margin:0 0 10px;color:var(--ink)}
+  .summary-box dd:last-child{margin-bottom:0}
+  .success{text-align:center;padding:36px 26px 40px;display:none}
+  .success.active{display:block}
+  .success .mark{
+    width:64px;height:64px;border-radius:50%;background:var(--accent-soft);
+    display:grid;place-items:center;margin:0 auto 18px;font-size:1.9rem;color:var(--accent-dark);
+  }
+  .success h2{font-size:1.5rem}
+  .success .lede{margin:10px auto 22px}
+  .success-card{text-align:left;background:var(--accent-soft);border:1px solid #F3C6B8;border-radius:12px;padding:20px;margin:0 0 22px;font-size:.95rem}
+  .success-card dt{font-weight:740;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-dark);margin-bottom:3px}
+  .success-card dd{margin:0 0 12px;color:var(--ink)}
+  .success-card dd:last-child{margin-bottom:0}
+  .success .next{font-size:.9rem;color:var(--muted);margin-bottom:22px;text-align:left}
+  .consent{font-size:.78rem;color:var(--muted);margin-top:14px;text-align:center}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;gap:36px}
+    .hero-visual{order:-1;max-width:400px}
+    .benefit-grid,.steps,.quote-grid{grid-template-columns:1fr}
+    .obj-grid{grid-template-columns:1fr 1fr}
+    .video-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
+  }
+  @media (max-width:640px){
+    section{padding:52px 0}
+    body{font-size:16px}
+    .obj-grid{grid-template-columns:1fr}
+    .choice-grid{grid-template-columns:1fr 1fr}
+    .choice-grid.lic{grid-template-columns:1fr}
+    .final-card{padding:40px 20px}
+    /* show sticky bar once the hero CTA scrolls away (JS toggles .visible) */
+    body.has-funnel{padding-bottom:74px}
+  }
+</style>
+</head>
+<body>
+
+<div class="site-disclaimer">
+  <strong>Practice sample.</strong> This page is inspired by Aceable Insurance and was created only as a
+  design exercise. It is not affiliated with, endorsed by, or connected to
+  <a href="https://insurance.aceable.com/">Aceable, Inc.</a>
+</div>
+
+<header class="site">
+  <div class="wrap site-inner">
+    <a class="wordmark" href="file:///C:/Users/PC/Documents/Default%20Project/aceable-book-a-call.html#top" aria-label="Aceable Insurance home">
+      Aceable Insurance <span class="badge-in">Pre-Licensing</span>
+    </a>
+    <button class="btn btn-primary open-wizard" data-cta="header">Book my call</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ 1. HERO ============ -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Get your insurance license without the guesswork</h1>
+        <p class="lede">
+          Book a free 15-minute call with a licensing advisor who maps out your exact
+          path — the right course, license line, and exam date for your state.
+        </p>
+        <button class="btn btn-primary open-wizard" data-cta="hero">
+          Book my free call
+        </button>
+        <div class="trust-row">
+          <span class="stars" aria-hidden="true">★★★★★</span>
+          <span><strong class="who">4.8/5</strong> on Trustpilot · 10,758 reviews</span>
+        </div>
+        <div class="trust-row" style="margin-top:6px">
+          15 minutes · Free · No credit card required
+        </div>
+      </div>
+
+      <!-- Product visual: what the call produces. Swap in a real advisor photo + name. (TODO: replace placeholder avatar/name) -->
+      <div class="hero-visual" role="img" aria-label="Sample roadmap card created during the advisor call">
+        <div class="plan-card">
+          <span class="tag">What you leave the call with</span>
+          <h3>Your licensing plan</h3>
+          <p class="sub">Built around your state, schedule, and goal — on one page.</p>
+          <ul class="agenda">
+            <li><span class="n">1</span><span>Your state checklist — hours, exam steps, fees
+              <span class="when">Send 5 min</span></span></li>
+            <li><span class="n">2</span><span>Life &amp; Health vs. Property &amp; Casualty — which fits your first job
+              <span class="when">Call 5 min</span></span></li>
+            <li><span class="n">3</span><span>Course + target exam date, priced out
+              <span class="when">Call 5 min</span></span></li>
+          </ul>
+          <div class="advisor-chip">
+            <span class="avatar" aria-hidden="true">AA</span>
+            <span><b>Meet with an Aceable licensing advisor</b> — a real person who does this every day.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. PROOF STRIP ============ -->
+  <div class="proof">
+    <div class="wrap proof-inner">
+      <div class="proof-item"><b>18 states</b> approved for pre-licensing</div>
+      <div class="dot" aria-hidden="true"></div>
+      <div class="proof-item">Named to <b>Newsweek's 2025</b> Best Online Platforms</div>
+      <div class="dot" aria-hidden="true"></div>
+      <div class="proof-item"><b>10,758</b> verified Trustpilot reviews</div>
+      <div class="dot" aria-hidden="true"></div>
+      <div class="proof-item">Rated <b>4.8/5</b> by students</div>
+    </div>
+  </div>
+
+  <!-- ============ 3. WHY BOOK (3 benefits) ============ -->
+  <section>
+    <div class="wrap">
+      <p class="kicker">Why the call matters</p>
+      <h2>Most new agents lose weeks deciding. This takes 15&nbsp;minutes.</h2>
+      <p class="lede" style="margin-top:12px">Pick the wrong course, license, or exam order and you pay for it twice. The call exists to get these right the first time.</p>
+
+      <div class="benefit-grid">
+        <div class="benefit">
+          <span class="icon" aria-hidden="true">🗺️</span>
+          <h3>Know exactly what your state requires</h3>
+          <p>Licensing hours, exam steps, and fees differ in every state — and change every year. You'll leave with the current blueprint, not a forum thread from 2021.</p>
+          <p class="proof-line">Aceable courses are state-approved in <b>18 states</b>.</p>
+        </div>
+        <div class="benefit">
+          <span class="icon" aria-hidden="true">⚖️</span>
+          <h3>Choose the right license line before you pay</h3>
+          <p>Life &amp; Health and Property &amp; Casualty lead to different jobs. We'll match the license to what you actually want to sell — all-in-one bundles included.</p>
+          <p class="proof-line">National first-pass exam rates sit at roughly <b>55–60%</b> when students guess their prep.</p>
+        </div>
+        <div class="benefit">
+          <span class="icon" aria-hidden="true">🎯</span>
+          <h3>Walk off the call with a real exam date</h3>
+          <p>Your advisor sets a course pace that fits your schedule — many students finish the course and sit for the exam in under two weeks.</p>
+          <p class="proof-line">Many students complete pre-licensing in <b>less than 2 weeks</b>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. SEE IT IN ACTION — video cards ============ -->
+  <!-- Images: drop "video-1.jpg" and "video-2.jpg" next to this file (the two cards
+       from the Aceable promo set). Until then a styled teal card fallback shows.
+       TODO:wire → replace with real video URLs + lightbox when available. -->
+  <section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+    <div class="wrap">
+      <p class="kicker">See Aceable in action</p>
+      <h2>Surprisingly intuitive. Actually enjoyable.</h2>
+      <p class="lede" style="margin-top:12px">This is pre-licensing that actually works. No fluff — just a streamlined path to passing your exam and launching your career, wherever you are.</p>
+
+      <div class="video-grid">
+        <figure class="video-card">
+          <img src="./Book a free 15-minute licensing call _ Aceable Insurance_files/video-1.jpg" data-altsrc="video-1.png" alt="Video preview: education that prepares you for your exams and your new career" width="593" height="621" loading="lazy" onerror="if(this.dataset.altsrc){this.src=this.dataset.altsrc;this.removeAttribute('data-altsrc');}else{this.closest('.video-card').classList.add('noimg');this.remove();}">
+          <figcaption class="vid-fallback" aria-hidden="true">
+            <div class="vid-kick">The most accessible way to grow</div>
+            <div class="vid-title">Education that prepares you for your exams and your new career</div>
+            <div class="vid-play" aria-hidden="true">▶</div>
+          </figcaption>
+        </figure>
+
+        <figure class="video-card">
+          <img src="./Book a free 15-minute licensing call _ Aceable Insurance_files/video-2.jpg" data-altsrc="video-2.png" alt="Video preview: skill-building that prepares you for career advancement" width="592" height="621" loading="lazy" onerror="if(this.dataset.altsrc){this.src=this.dataset.altsrc;this.removeAttribute('data-altsrc');}else{this.closest('.video-card').classList.add('noimg');this.remove();}">
+          <figcaption class="vid-fallback" aria-hidden="true">
+            <div class="vid-kick">Study and learn on your own schedule</div>
+            <div class="vid-title">Skill-building that prepares you for career advancement</div>
+            <div class="vid-play" aria-hidden="true">▶</div>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5. HOW IT WORKS ============ -->
+  <section>
+    <div class="wrap">
+      <p class="kicker">How it works</p>
+      <h2>From clicking the button to starting your course</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">Step 1 · Book</div>
+          <h3>Pick a time that fits</h3>
+          <p>Three quick questions (state, license line, where you are today), then grab a slot. Times shown in your time zone.</p>
+          <span class="time">⏱ 30 seconds</span>
+        </div>
+        <div class="step">
+          <div class="step-num">Step 2 · Meet</div>
+          <h3>Talk with a licensing advisor</h3>
+          <p>A phone or video call — the 15 minutes follow your state checklist, the right license line, and your course plan. Then you decide.</p>
+          <span class="time">⏱ 15 minutes</span>
+        </div>
+        <div class="step">
+          <div class="step-num">Step 3 · Start</div>
+          <h3>Start your course the same day</h3>
+          <p>If it's a fit, you're enrolled with your plan in hand and a target exam date. If not, the call was still free.</p>
+          <span class="time">⏱ Same day</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. OBJECTION HANDLING ============ -->
+  <section class="objections">
+    <div class="wrap">
+      <p class="kicker">Fair questions</p>
+      <h2>Nothing up-front. Nothing after, either, until you say so.</h2>
+      <div class="obj-grid">
+        <div class="obj"><b>Free</b> The call costs nothing at any step — no deposit, no "setup fee."</div>
+        <div class="obj"><b>No credit card</b> We don't charge you, so we don't need a card.</div>
+        <div class="obj"><b>No experience needed</b> Career switchers and first-timers are exactly who this call is for.</div>
+        <div class="obj"><b>Cancel anytime</b> Reschedule or cancel from the link in your booking confirmation. No penalty.</div>
+      </div>
+      <p class="fit-note">
+        Already know your state and course?
+        <a class="quiet-link" data-cta="skip-call" href="https://insurance.aceable.com/pre-license/">Browse pre-licensing courses directly →</a>
+        (that's a real option — the call is a shortcut, not a gate)
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ 7. TESTIMONIALS ============ -->
+  <section>
+    <div class="wrap">
+      <p class="kicker">From students</p>
+      <h2>What happens when you prep with help instead of hope</h2>
+      <div class="quote-grid">
+        <figure class="quote">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <h3>"I passed the exam on my 1st try"</h3>
+          <p>Taking the online course combined the best of two worlds for me. I was home, able to walk my dogs for lunch, and while learning and completing a short-term goal.</p>
+          <footer><b>DJB</b> · Aceable pre-licensing student</footer>
+        </figure>
+        <figure class="quote">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <h3>"Learning at my specific pace"</h3>
+          <p>I was able to read and learn about the material related to my current full-time job. I passed the state exam on my first try. Aceable provided everything that I needed to accomplish that goal.</p>
+          <footer><b>Carolyn</b> · Licensed after studying while working</footer>
+        </figure>
+        <figure class="quote">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <h3>"Passed on the first try and got my license"</h3>
+          <p>The school provides high-quality instruction, and the school exam simulates the national and state exams. I am thrilled because I passed the exam on the first try and got my license.</p>
+          <footer><b>Lyudmila</b> · Aceable pre-licensing student</footer>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8. FAQ ============ -->
+  <section style="background:#fff;border-top:1px solid var(--line)">
+    <div class="wrap">
+      <div class="faq">
+        <p class="kicker" style="text-align:center">Before you book</p>
+        <h2 style="text-align:center">The 6 things callers ask us first</h2>
+        <div style="margin-top:28px">
+          <details>
+            <summary>Who exactly will I talk to?</summary>
+            <p>A licensing advisor — a staff member who knows every state's pre-licensing requirements inside out. You won't talk to a sales script or a chatbot.</p>
+          </details>
+          <details>
+            <summary>Is the call really free? What's the catch?</summary>
+            <p>The call is free. We'd rather spend 15 minutes making sure you buy the right course than have you buy the wrong one. If no course fits, we say so and point you elsewhere.</p>
+          </details>
+          <details>
+            <summary>What happens on the call?</summary>
+            <p>Fifteen focused minutes: your state's requirements, which license line matches your goals, and a course-and-exam timeline priced out for you. In the end, you decide.</p>
+          </details>
+          <details>
+            <summary>How long will it take me to get licensed?</summary>
+            <p>Many students complete their pre-licensing course in under two weeks. State requirements, exam scheduling, and results add a few weeks — your advisor will give you a realistic date range for your state.</p>
+          </details>
+          <details>
+            <summary>What if I'm not ready to start yet?</summary>
+            <p>"Just exploring" is fine — that's the most common answer. You'll still leave with a plan and a future timeline; you just won't be enrolled in anything.</p>
+          </details>
+          <details>
+            <summary>What's the exam actually like?</summary>
+            <p>State exams are serious: national first-try pass rates average around 55–60%. That's precisely why the call includes an exam-prep plan — prepared students are literally changing the odds.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. FINAL CTA ============ -->
+  <section class="final">
+    <div class="wrap">
+      <div class="final-card">
+        <h2>Your license. One conversation from now.</h2>
+        <p class="lede">
+          Fifteen minutes, free, no credit card. Bring your questions; leave with your
+          state checklist, license line, and a course plan priced out.
+        </p>
+        <button class="btn btn-primary open-wizard" data-cta="final">Book my free call</button>
+        <p class="risk">15 minutes · Free · No credit card · Reschedule anytime</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© <span id="year">2026</span> Aceable, Inc. All rights reserved.</span>
+    <span>
+      <a href="https://insurance.aceable.com/privacy-policy/">Privacy</a> ·
+      <a href="https://insurance.aceable.com/terms-and-conditions/">Terms</a> ·
+      <a href="https://insurance.aceable.com/support/">Help Center</a>
+    </span>
+    <span class="disc-line">Unofficial practice project inspired by Aceable Insurance — created as a design exercise only. Not affiliated with or endorsed by Aceable, Inc.</span>
+  </div>
+</footer>
+
+<!-- sticky mobile CTA, appears once hero leaves view -->
+<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+  <button class="btn btn-primary open-wizard" data-cta="sticky-mobile">Book my free call</button>
+</div>
+
+<!-- ==================== BOOKING WIZARD ==================== -->
+<div class="overlay" id="overlay" role="presentation">
+  <div class="wizard" role="dialog" aria-modal="true" aria-labelledby="wizTitle" id="wizard">
+    <div class="wiz-head">
+      <h2 id="wizTitle">Book your free 15-minute call</h2>
+      <button class="close" id="wizClose" aria-label="Close booking"><span aria-hidden="true">×</span></button>
+    </div>
+
+    <div class="progress" id="progress" aria-hidden="true">
+      <span data-bar="1" class="done"></span><span data-bar="2"></span><span data-bar="3"></span><span data-bar="4"></span>
+    </div>
+
+    <!-- STEP 1 — qualify: state + license line -->
+    <div class="wiz-step active" data-step="1">
+      <h3>Let's set the table</h3>
+      <p class="hint">Your advisor preps for <em>your</em> state while you finish booking.</p>
+
+      <div class="field">
+        <label id="stateLabel">Which state are you getting licensed in?</label>
+        <div class="choice-grid" role="group" aria-labelledby="stateLabel" id="stateGrid">
+          <!-- real Aceable pre-licensing states (rendered by JS) -->
+        <button type="button" class="chip" data-state="Arizona">Arizona</button><button type="button" class="chip" data-state="California">California</button><button type="button" class="chip" data-state="Florida">Florida</button><button type="button" class="chip" data-state="Georgia">Georgia</button><button type="button" class="chip" data-state="Illinois">Illinois</button><button type="button" class="chip" data-state="Louisiana">Louisiana</button><button type="button" class="chip" data-state="Massachusetts">Massachusetts</button><button type="button" class="chip" data-state="Michigan">Michigan</button><button type="button" class="chip" data-state="Missouri">Missouri</button><button type="button" class="chip" data-state="New York">New York</button><button type="button" class="chip" data-state="North Carolina">North Carolina</button><button type="button" class="chip" data-state="Ohio">Ohio</button><button type="button" class="chip" data-state="Oklahoma">Oklahoma</button><button type="button" class="chip" data-state="Pennsylvania">Pennsylvania</button><button type="button" class="chip" data-state="South Carolina">South Carolina</button><button type="button" class="chip" data-state="Tennessee">Tennessee</button><button type="button" class="chip" data-state="Texas">Texas</button><button type="button" class="chip" data-state="Washington">Washington</button></div>
+      </div>
+
+      <div class="field">
+        <label id="licLabel">Which license line are you considering?</label>
+        <div class="choice-grid lic" role="group" aria-labelledby="licLabel" id="licGrid">
+          <button class="chip" type="button" data-lic="Life &amp; Health">Life &amp; Health</button>
+          <button class="chip" type="button" data-lic="Property &amp; Casualty">Property &amp; Casualty</button>
+          <button class="chip active" type="button" data-lic="Not sure yet — help me decide">Not sure yet — help me decide</button>
+        </div>
+      </div>
+
+      <p class="wiz-error" id="err1">Pick a state to continue.</p>
+      <div class="wiz-nav">
+        <span></span>
+        <button class="btn btn-primary" id="next1" type="button">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 — situation + contact -->
+    <div class="wiz-step" data-step="2">
+      <h3>Where are you today?</h3>
+      <p class="hint">One line of context makes the call twice as useful.</p>
+
+      <div class="field">
+        <div class="radio-row" id="situationGrid" aria-label="Your situation">
+          <button class="chip" type="button" data-sit="Just exploring the career">🔭 Just exploring the career</button>
+          <button class="chip" type="button" data-sit="Ready to start within 30 days">🚀 Ready to start within 30 days</button>
+          <button class="chip" type="button" data-sit="Already studying, want a smarter plan">📚 Already studying — want a smarter plan</button>
+          <button class="chip" type="button" data-sit="Took the exam, didn't pass, retaking">🎯 Took the exam, didn't pass, planning a retake</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="fName">Full name</label>
+        <input id="fName" autocomplete="name" placeholder="Jordan Rivera">
+      </div>
+      <div class="field">
+        <label for="fEmail">Best email for the confirmation</label>
+        <input id="fEmail" type="email" autocomplete="email" placeholder="you@email.com">
+      </div>
+      <div class="field">
+        <label for="fPhone">Mobile <span class="opt">(optional — for a text reminder, if you'd like one)</span></label>
+        <input id="fPhone" type="tel" autocomplete="tel" placeholder="(512) 555-0199">
+      </div>
+
+      <p class="wiz-error" id="err2">Please complete the highlighted fields.</p>
+      <div class="wiz-nav">
+        <button class="wiz-back" id="back2" type="button">← Back</button>
+        <button class="btn btn-primary" id="next2" type="button">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 — date + slot -->
+    <div class="wiz-step" data-step="3">
+      <h3>Pick a time</h3>
+      <p class="tz-note">All times shown in <strong>your local time zone</strong>.</p>
+      <div class="day-strip" id="dayStrip" aria-label="Available days"><button type="button" class="day active" aria-pressed="true"><span class="dow">Fri</span><span class="dn">6</span><span class="dm">Nov 6</span></button><button type="button" class="day" aria-pressed="false"><span class="dow">Sat</span><span class="dn">7</span><span class="dm">Nov 7</span></button><button type="button" class="day" aria-pressed="false"><span class="dow">Mon</span><span class="dn">9</span><span class="dm">Nov 9</span></button><button type="button" class="day" aria-pressed="false"><span class="dow">Tue</span><span class="dn">10</span><span class="dm">Nov 10</span></button><button type="button" class="day" aria-pressed="false"><span class="dow">Wed</span><span class="dn">11</span><span class="dm">Nov 11</span></button><button type="button" class="day" aria-pressed="false"><span class="dow">Thu</span><span class="dn">12</span><span class="dm">Nov 12</span></button><button type="button" class="day" aria-pressed="false"><span class="dow">Fri</span><span class="dn">13</span><span class="dm">Nov 13</span></button><button type="button" class="day" aria-pressed="false"><span class="dow">Sat</span><span class="dn">14</span><span class="dm">Nov 14</span></button></div>
+      <div class="slot-grid" id="slotGrid" aria-label="Available times"><button type="button" class="slot" aria-pressed="false">9:00 AM</button><button type="button" class="slot" aria-pressed="false">10:00 AM</button><button type="button" class="slot" aria-pressed="false" disabled="" aria-label="11:00 AM — booked">11:00 AM</button><button type="button" class="slot" aria-pressed="false">1:00 PM</button><button type="button" class="slot" aria-pressed="false">2:00 PM</button><button type="button" class="slot" aria-pressed="false">3:00 PM</button><button type="button" class="slot" aria-pressed="false">4:00 PM</button><button type="button" class="slot" aria-pressed="false">5:00 PM</button><button type="button" class="slot" aria-pressed="false">6:00 PM</button></div>
+      <p class="wiz-error" id="err3" style="display: none;">Select a time to continue.</p>
+      <div class="wiz-nav" style="margin-top:22px">
+        <button class="wiz-back" id="back3" type="button">← Back</button>
+        <button class="btn btn-primary" id="next3" type="button">Review booking →</button>
+      </div>
+    </div>
+
+    <!-- STEP 4 — review + confirm -->
+    <div class="wiz-step" data-step="4">
+      <h3>Everything look right?</h3>
+      <p class="hint">Confirming books this slot. You can reschedule or cancel from the calendar invite, no penalty.</p>
+      <dl>
+        <div class="summary-box">
+          <dt>Call</dt><dd id="sumSlot">—</dd>
+        </div>
+        <div class="summary-box">
+          <dt>You</dt><dd id="sumYou">—</dd>
+        </div>
+        <div class="summary-box">
+          <dt>Plan topic</dt><dd id="sumPlan">—</dd>
+        </div>
+      </dl>
+      <div class="wiz-nav">
+        <button class="wiz-back" id="back4" type="button">← Back</button>
+        <button class="btn btn-primary" id="confirm" type="button">Confirm my booking</button>
+      </div>
+      <p class="consent">Booking sends your name, email, phone, and answers to Aceable's licensing team. Read our <a class="quiet-link" href="https://insurance.aceable.com/privacy-policy/">privacy policy</a>.</p>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success" id="successScreen">
+      <div class="mark" aria-hidden="true">✓</div>
+      <h2>You're booked!</h2>
+      <p class="lede">A confirmation with your advisor's details is on its way to <b id="confEmail">your email</b>.</p>
+      <dl class="success-card">
+        <dt>When</dt><dd id="conSlot">—</dd>
+        <dt>Who with</dt><dd>Aceable licensing advisor</dd>
+        <dt>Where</dt><dd id="conWhere">Phone call — details in the invite email</dd>
+      </dl>
+      <p class="next">
+        No documents or prep needed before the call. Have these handy if you have them:
+        <br>1. Which state (done — we've noted it) · 2. Rough timeline · 3. Your questions
+      </p>
+      <button class="btn btn-primary" id="addCal" type="button">Add to calendar (.ics)</button>
+      <br>
+      <button id="doneBtn" style="margin-top:14px;font-size:1rem;color:var(--accent-dark);text-decoration:underline;text-underline-offset:3px;background:none;border:0;cursor:pointer">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* ---------- booking state ---------- */
+  var booking = {
+    state: null, lic: null, sit: null,
+    name: "", email: "", phone: "",
+    day: null, slot: null, when: "", confirmed: false
+  };
+  var STATES = ["Arizona","California","Florida","Georgia","Illinois","Louisiana",
+    "Massachusetts","Michigan","Missouri","New York","North Carolina","Ohio",
+    "Oklahoma","Pennsylvania","South Carolina","Tennessee","Texas","Washington"];
+  var SLOTS = ["9:00 AM","10:00 AM","11:00 AM","1:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM","6:00 PM"];
+
+  /* state chips */
+  var sg = document.getElementById("stateGrid");
+  STATES.forEach(function(s){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "chip"; b.textContent = s; b.dataset.state = s;
+    b.addEventListener("click", function(){
+      sg.querySelectorAll(".chip").forEach(function(c){ c.classList.remove("active"); });
+      b.classList.add("active"); booking.state = s; hideErr("err1");
+    });
+    sg.appendChild(b);
+  });
+
+  /* license chips (preselect the most common answer: "not sure yet") */
+  var lg = document.getElementById("licGrid");
+  lg.querySelectorAll(".chip").forEach(function(c){
+    c.addEventListener("click", function(){
+      lg.querySelectorAll(".chip").forEach(function(x){ x.classList.remove("active"); });
+      c.classList.add("active"); booking.lic = c.dataset.lic;
+    });
+  });
+  var defaultLic = lg.querySelector('[data-lic="Not sure yet — help me decide"]');
+  if (defaultLic) { defaultLic.classList.add("active"); booking.lic = defaultLic.dataset.lic; }
+
+  /* situation chips */
+  var sgrid = document.getElementById("situationGrid");
+  sgrid.querySelectorAll(".chip").forEach(function(c){
+    c.addEventListener("click", function(){
+      sgrid.querySelectorAll(".chip").forEach(function(x){ x.classList.remove("active"); });
+      c.classList.add("active"); booking.sit = c.dataset.sit;
+    });
+  });
+
+  /* ---------- calendar build (dates without Sunday) ---------- */
+  var days = [];
+  (function buildDays(){
+    var d = new Date(); d.setDate(d.getDate() + 1); // start tomorrow
+    while (days.length < 8) {
+      if (d.getDay() !== 0) days.push(new Date(d)); // skip Sundays
+      d.setDate(d.getDate() + 1);
+    }
+  })();
+  var fmt = new Intl.DateTimeFormat(undefined, { month:"short", day:"numeric" });
+  var DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+  var strip = document.getElementById("dayStrip");
+  days.forEach(function(d, i){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "day";
+    b.innerHTML = '<span class="dow">'+DOW[d.getDay()]+'</span>'+
+                  '<span class="dn">'+d.getDate()+'</span>'+
+                  '<span class="dm">'+fmt.format(d)+'</span>';
+    b.setAttribute("aria-pressed","false");
+    b.addEventListener("click", function(){ setDay(i); });
+    strip.appendChild(b);
+  });
+
+  function slotOpen(dayIdx, slotIdx){
+    /* deterministic pseudo-availability so the grid feels real. TODO:wire →
+       replace with advisor calendar API (e.g. Cal.com availability endpoint). */
+    var d = days[dayIdx];
+    var hash = (d.getDate()*31 + d.getMonth()*7 + slotIdx*13 + dayIdx*17);
+    if (slotIdx === 2 && hash % 4 === 0) return false;   // 11am partial blackout
+    return hash % 9 !== 3;                                // scattered "booked" slots
+  }
+  function setDay(i){
+    strip.querySelectorAll(".day").forEach(function(x, xi){
+      x.classList.toggle("active", xi === i);
+      x.setAttribute("aria-pressed", xi === i ? "true" : "false");
+    });
+    booking.day = i; booking.slot = null; hideErr("err3");
+    var grid = document.getElementById("slotGrid");
+    grid.innerHTML = "";
+    SLOTS.forEach(function(s, si){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "slot"; b.textContent = s;
+      b.setAttribute("aria-pressed","false");
+      if (!slotOpen(i, si)) { b.disabled = true; b.setAttribute("aria-label", s + " — booked"); }
+      else b.addEventListener("click", function(){
+        grid.querySelectorAll(".slot").forEach(function(x){ x.classList.remove("active"); });
+        b.classList.add("active"); booking.slot = s; hideErr("err3");
+      });
+      grid.appendChild(b);
+    });
+  }
+  setDay(0); // preselect first available day
+
+  /* ---------- wizard plumbing ---------- */
+  var overlay = document.getElementById("overlay"),
+      wizard = document.getElementById("wizard"),
+      lastFocus = null;
+
+  function show(step){
+    wizard.querySelectorAll(".wiz-step").forEach(function(el){
+      el.classList.toggle("active", +el.dataset.step === step);
+    });
+    document.getElementById("successScreen").classList.remove("active");
+    document.getElementById("wizTitle").textContent = "Book your free 15-minute call";
+    wizard.querySelector(".progress").style.display = "";
+    wizard.querySelectorAll("[data-bar]").forEach(function(b){
+      b.classList.toggle("done", +b.dataset.bar <= step);
+    });
+  }
+  function openWizard(){
+    lastFocus = document.activeElement;
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+    if (booking.confirmed) { showSuccess(); } else { show(1); }
+    var f = overlay.querySelector("input,button");
+    if (f) f.focus();
+  }
+  function closeWizard(){
+    overlay.classList.remove("open");
+    document.body.style.overflow = "";
+    if (lastFocus) lastFocus.focus();
+  }
+  function hideErr(id){ document.getElementById(id).style.display = "none"; }
+  function showErr(id){ document.getElementById(id).style.display = "block"; }
+  function markUnfilled(el){
+    el.style.borderColor = "#9E2B10";
+    el.addEventListener("input", function(){ el.style.borderColor = ""; }, { once:true });
+  }
+
+  document.querySelectorAll(".open-wizard").forEach(function(b){
+    b.addEventListener("click", openWizard);
+  });
+  document.getElementById("wizClose").addEventListener("click", closeWizard);
+  overlay.addEventListener("click", function(e){ if (e.target === overlay) closeWizard(); });
+  document.addEventListener("keydown", function(e){
+    if (e.key === "Escape" && overlay.classList.contains("open")) closeWizard();
+  });
+
+  /* step navigation */
+  document.getElementById("next1").addEventListener("click", function(){
+    if (!booking.state) { showErr("err1"); return; }
+    show(2);
+  });
+  document.getElementById("next2").addEventListener("click", function(){
+    var n = document.getElementById("fName"), e = document.getElementById("fEmail"), p = document.getElementById("fPhone");
+    var ok = true;
+    [n,e].forEach(function(inp){ if (!inp.value.trim()) { markUnfilled(inp); ok = false; } });
+    if (e.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.value.trim())) { markUnfilled(e); ok = false; }
+    booking.name = n.value.trim(); booking.email = e.value.trim(); booking.phone = p.value.trim();
+    if (!ok) { showErr("err2"); return; }
+    show(3);
+  });
+  document.getElementById("next3").addEventListener("click", function(){
+    if (booking.day === null || !booking.slot) { showErr("err3"); return; }
+    var d = days[booking.day];
+    booking.when = DOW[d.getDay()] + ", " + fmt.format(d) + " · " + booking.slot + " (your time)";
+    document.getElementById("sumSlot").textContent = booking.when;
+    document.getElementById("sumYou").textContent = booking.name + " · " + booking.email +
+      (booking.phone ? " · " + booking.phone : "");
+    document.getElementById("sumPlan").textContent =
+      booking.state + " — " + (booking.lic || "Not sure yet") + " · " + (booking.sit || "General intro to the career");
+    show(4);
+  });
+  ["back2","back3","back4"].forEach(function(id, i){
+    document.getElementById(id).addEventListener("click", function(){ show([1,2,3][i]); });
+  });
+
+  /* confirm → success */
+  document.getElementById("confirm").addEventListener("click", function(){
+    booking.confirmed = true;
+    /* TODO:wire → POST booking to CRM webhook + advisor calendar (integration point) */
+    showSuccess();
+  });
+  function showSuccess(){
+    document.getElementById("confEmail").textContent = booking.email;
+    document.getElementById("conSlot").textContent = booking.when;
+    document.getElementById("conWhere").textContent =
+      booking.phone ? "Phone call to " + booking.phone : "Phone/video call — details in the invite email";
+    wizard.querySelectorAll(".wiz-step").forEach(function(el){ el.classList.remove("active"); });
+    wizard.querySelector(".progress").style.display = "none";
+    document.getElementById("successScreen").classList.add("active");
+    document.getElementById("wizTitle").textContent = "Booking confirmed";
+    /* analytics hook */
+    document.documentElement.dispatchEvent(new CustomEvent("funnel:booked", {
+      bubbles:true, detail:{ state:booking.state, lic:booking.lic, sit:booking.sit }
+    }));
+  }
+
+  /* .ics generation */
+  document.getElementById("addCal").addEventListener("click", function(){
+    var d = days[booking.day], s = booking.slot;
+    var h = parseInt(s.match(/^(\d+):/)[1], 10);
+    var start = new Date(d);
+    start.setHours((s.includes("PM") && h !== 12 ? h + 12 : h), 0, 0, 0);
+    var end = new Date(start.getTime() + 15*60*1000);
+    var fmtIcs = function(dt){ return dt.toLocaleString("sv-SE").replace(/[- :]/g, ""); };
+    var ics = [
+      "BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//Aceable//Advisor Call//EN",
+      "BEGIN:VEVENT",
+      "UID:" + Date.now() + "@aceable",
+      "DTSTAMP:" + fmtIcs(new Date()),
+      "DTSTART:" + fmtIcs(start),
+      "DTEND:" + fmtIcs(end),
+      "SUMMARY:Aceable licensing advisor call — " + booking.state,
+      "DESCRIPTION:15-minute call. State: " + booking.state + ". License line: " + (booking.lic || "Not sure yet") + ".",
+      "LOCATION:Phone call",
+      "END:VEVENT","END:VCALENDAR"
+    ].join("\r\n");
+    var blob = new Blob([ics], { type:"text/calendar" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "aceable-advisor-call.ics";
+    document.body.appendChild(a); a.click(); a.remove();
+  });
+  document.getElementById("doneBtn").addEventListener("click", closeWizard);
+
+  /* sticky mobile CTA after hero */
+  var sticky = document.getElementById("stickyCta");
+  if (window.matchMedia("(max-width:640px)").matches) {
+    document.body.classList.add("has-funnel");
+    var heroCta = document.querySelector(".hero .open-wizard");
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function(entries){
+        sticky.classList.toggle("visible", !entries[0].isIntersecting);
+        sticky.setAttribute("aria-hidden", entries[0].isIntersecting ? "true" : "false");
+      }, { threshold: 0.1 }).observe(heroCta);
+    }
+  }
+
+  /* expose booking for QA */
+  window.__funnel = booking;
+})();
+</script>
+
+
+</body></html>
